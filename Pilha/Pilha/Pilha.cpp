@@ -76,7 +76,6 @@ void inicializar()
 
 void push()
 {
-	// aloca memoria dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
@@ -87,12 +86,35 @@ void push()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	if (topo) {
+		novo->prox = topo;
+		topo = novo;
+	}
+	else {
+		topo = novo;
+	}
+
 
 }
 
 void pop()
 {
-
+	NO* aux = topo;
+	if (topo) {
+		int valorDigitado = NULL;
+		cout << "Deseja realmente excluir o elemento '" << aux->valor << "'? Se desejar cancelar digite 0, caso contrario digite qualquer outro numero." << endl;
+		cin >> valorDigitado;
+		if (valorDigitado == 0) {
+			return;
+		}
+		else {
+			topo = topo->prox;
+			free(aux);
+		}
+	}
+	else {
+		cout << "Nao existe elementos na pilha." << endl;
+	}
 	
 
 }
